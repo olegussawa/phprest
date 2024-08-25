@@ -2,7 +2,7 @@
 //echo "<pre>";
 header('Access-Control-Allow-Origin: *');
 header('Content-type:application/json');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: PUT');
 header('Access-Control-Allow-headers: Access-Control-Allow-Origin,Content-type,Access-Control-Allow-Methods,Authorization');
 
 
@@ -15,26 +15,16 @@ $post =new Git($dbh);
 
 $data=json_decode(file_get_contents("php://input"));
 
-//var_dump($_POST);
+//var_dump($data);
 
 
 $post->name=$data->функция;
 $post->description=$data->описание;
 $post->example=$data->пример;
+$post->id=$data->id;
 
 
-if($post->create_note()){
-    echo 'post created';
+if($post->update_note()){
+    echo 'post updated';
 }else
-echo 'post not created';
-
-
-// {
-//     "name": "tea",
-//     "number": 7,
-//     "price": 124,
-//     "id": 1
-// }
-
-
-
+echo 'post not updated';

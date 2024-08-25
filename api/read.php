@@ -10,7 +10,7 @@ include_once("../core/initialize.php");
 
 
 
-$post =new Post($dbh);
+$post =new Git($dbh);
 
 //выводим все записи
 $result=$post->read();

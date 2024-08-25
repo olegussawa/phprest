@@ -2,7 +2,7 @@
 //echo "<pre>";
 header('Access-Control-Allow-Origin: *');
 header('Content-type:application/json');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: DELETE');
 header('Access-Control-Allow-headers: Access-Control-Allow-Origin,Content-type,Access-Control-Allow-Methods,Authorization');
 
 
@@ -11,30 +11,18 @@ include_once("../core/initialize.php");
 
 
 
-$post =new Git($dbh);
+$post =new Post($dbh);
 
 $data=json_decode(file_get_contents("php://input"));
 
 //var_dump($_POST);
 
 
-$post->name=$data->функция;
-$post->description=$data->описание;
-$post->example=$data->пример;
+$post->id=$data->id;
 
 
-if($post->create_note()){
-    echo 'post created';
+if($post->delete_note()){
+    echo 'post deleted';
 }else
-echo 'post not created';
-
-
-// {
-//     "name": "tea",
-//     "number": 7,
-//     "price": 124,
-//     "id": 1
-// }
-
-
+echo 'post not deleted';
 

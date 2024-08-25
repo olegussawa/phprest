@@ -1,17 +1,17 @@
 <?
 
 
-class Post {
+class Git {
 
 
     private $conn;
-    private $table='продукты';
+    private $table='git';
 
 
 public $id;
 public $name;
-public $price;
-public $number;
+public $description;
+public $example;
 
 
 
@@ -40,9 +40,9 @@ public function read_single(){
    
 if(!empty($arr)){
     $this->id=$arr['id'];
-    $this->name=$arr['name'];
-    $this->price=$arr['price'];
-    $this->number=$arr['number'];
+    $this->name=$arr['функция'];
+    $this->description=$arr['описание'];
+    $this->example=$arr['пример'];
 
     return($arr);
 }
@@ -52,14 +52,14 @@ if(!empty($arr)){
 
 public function create_note(){
 
-    $sth = $this->conn->prepare("INSERT INTO $this->table SET `name` = :name, `price` = :price, `number`= :number");
+    $sth = $this->conn->prepare("INSERT INTO $this->table SET `функция` = :name, `описание` = :desc, `пример`= :example");
     //clean data
    
     $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->number=htmlspecialchars(strip_tags($this->number));
+    $this->description=htmlspecialchars(strip_tags($this->description));
+    $this->example=htmlspecialchars(strip_tags($this->example));
 
-    if($sth->execute(['name' => $this->name, 'price' => $this->price,'number'=>$this->number])){
+    if($sth->execute(['name' => $this->name, 'desc' => $this->description,'example'=>$this->example])){
         return true;
     }
     print_r('error');
@@ -70,14 +70,14 @@ return false;
 
 public function update_note(){
 
-$sth = $this->conn->prepare("UPDATE $this->table SET `name` = :name, `price` = :price,`number`= :number WHERE `id` = :id");
+$sth = $this->conn->prepare("UPDATE $this->table SET `функция` = :f, `описание` = :desc,`пример`= :ex WHERE `id` = :id");
 
 $this->name=htmlspecialchars(strip_tags($this->name));
-$this->price=htmlspecialchars(strip_tags($this->price));
-$this->number=htmlspecialchars(strip_tags($this->number));
+$this->description=htmlspecialchars(strip_tags($this->description));
+$this->example=htmlspecialchars(strip_tags($this->example));
 $this->id=htmlspecialchars(strip_tags($this->id));
 
-if($sth->execute(['name' => $this->name, 'price' => $this->price,'number'=>$this->number,'id'=>$this->id])){
+if($sth->execute(['f' => $this->name, 'desc' => $this->description,'ex'=>$this->example,'id'=>$this->id])){
     return true;
 }
 print_r('error');
@@ -101,20 +101,3 @@ public function delete_note(){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

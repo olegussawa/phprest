@@ -19,7 +19,7 @@ require_once  INC_PATH.'/config.php';
 //core classes
 
 require_once CORE_PATH.'/post.php';
-
+require_once CORE_PATH.'/git.php';
 
 
 
