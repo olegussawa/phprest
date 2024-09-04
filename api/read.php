@@ -6,11 +6,11 @@ header('Content-type:application/json');
 
 
 //инициализируем апи
-include_once("../core/initialize.php");
+include "../core/initialize.php";
 
 
 
-$post =new Git($dbh);
+$post =new Post($dbh);
 
 //выводим все записи
 $result=$post->read();

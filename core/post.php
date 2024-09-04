@@ -61,8 +61,9 @@ public function create_note(){
 
     if($sth->execute(['name' => $this->name, 'price' => $this->price,'number'=>$this->number])){
         return true;
+        
     }
-    print_r('error');
+    
 return false;
 
 
@@ -86,35 +87,19 @@ return false;
 
 public function delete_note(){
 
-    $sth =  $this->conn->prepare("DELETE FROM $this->table WHERE `id` = :id");
+    $sth =  $this->conn->prepare("DELETE FROM $this->table WHERE `id` = $this->id");
     
     //clean
     $this->id=htmlspecialchars(strip_tags($this->id));
 
-    if($sth->execute(['id' => $this->id]))
+    if($sth->execute())
     {
         return true;
+        
     }
-    print_r('error');
+    
     return false;
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
