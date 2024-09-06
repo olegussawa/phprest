@@ -8,7 +8,7 @@
 
 //инициализируем апи
 include_once("../core/initialize.php");
-
+//komment
 
 
 $post =new Git($dbh);
